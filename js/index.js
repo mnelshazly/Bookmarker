@@ -15,9 +15,17 @@ if (localStorage.getItem("bookmarks") == null) {
 function addBookmark () {
 
     if (bookmarkNameInput.classList.contains("is-valid") && websiteLinkInput.classList.contains("is-valid")) {
-        var bookmark = {
-            bookmarkName : bookmarkNameInput.value,
-            bookmarkLink : websiteLinkInput.value,
+
+        if (websiteLinkInput.value.toLowerCase().includes("https://".toLowerCase()) == true || websiteLinkInput.value.toLowerCase().includes("http://".toLowerCase())) {
+            var bookmark = {
+                bookmarkName : bookmarkNameInput.value,
+                bookmarkLink : websiteLinkInput.value,
+            }
+        } else {
+            var bookmark = {
+                bookmarkName : bookmarkNameInput.value,
+                bookmarkLink : "https://" + websiteLinkInput.value,
+            }
         }
 
         bookmarkList.push(bookmark);
@@ -27,6 +35,7 @@ function addBookmark () {
         websiteLinkInput.classList.remove("is-valid");
         displayBookmark(bookmarkList);
         clear ();
+
     } else {
         alert("Invalid Input: \nSite Name must contain at least 3 characters and max 5 words. \nSite URL must be valid.");
     }
@@ -65,19 +74,16 @@ function clear () {
 function validateInputs(element) {
     var regex = {
         bookmarkName : /^\w{3,}(\s+\w+){0,4}$/,
-        websiteLink : /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/,
+        websiteLink : /^(https?:\/\/)?((([a-zA-Z\d]([a-zA-Z\d-]*[a-zA-Z\d])*)\.)*[a-zA-Z]{2,}|localhost)(:\d{1,5})?(\/[^\s]*)?(\?[^\s]*)?(#[^\s]*)?$/,
     }
 
     if (regex[element.id].test(element.value)) {
         element.classList.add("is-valid");
         element.classList.remove("is-invalid");
-        // console.log(element.nextElementSibling)
         element.nextElementSibling.classList.replace("d-block", "d-none");
     } else {
         element.classList.add("is-invalid");
         element.classList.remove("is-valid");
-        // element.nextElementSibling.classList.replace("d-none", "d-block");
         element.nextElementSibling.classList.replace("d-none", "d-block");
-        // console.log(element)
     }
 }
