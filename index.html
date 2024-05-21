@@ -1,0 +1,55 @@
+<!-- <!DOCTYPE html> -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Caption:wght@400;700&family=Pacifico&family=Righteous&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" href="images/bookmark.png">
+
+    <link rel="stylesheet" href="css/all.min.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bookmarker</title>
+  </head>
+  <body>
+    <main id="mainContent">
+      <div class="container py-5 d-flex flex-column align-items-center justify-content-center">
+        <h1 class="position-relative mb-5">Bookmarker</h1>
+
+        <div class="bookmark-main py-2 w-100 d-flex flex-column justify-content-center align-items-center">
+          <h2 class="my-4"><i class="fa-solid fa-bookmark"></i> Bookmark your favorite sites <i class="fa-solid fa-bookmark"></i></h2>
+          <div class="mb-3 w-100">
+            <label for="bookmarkName" class="form-label fw-semibold"><i class="fa-solid fa-book-bookmark pe-2"></i>Site Name</label>
+            <input oninput="validateInputs(this)" type="text" class="form-control" id="bookmarkName" placeholder="Bookmark Name">
+            <div class="alert alert-danger w-100 py-1 mt-2 d-none">Site Name must contain at least 3 characters and maximum 5 words.</div>
+          </div>
+          <div class="mb-3 w-100">
+            <label for="websiteLink" class="form-label fw-semibold"><i class="fa-solid fa-link pe-2"></i>Site URL</label>
+            <input oninput="validateInputs(this)" type="text" class="form-control" id="websiteLink" placeholder="Website URL">
+            <div class="alert alert-danger w-100 py-1 mt-2 d-none">Site URL must be valid.</div>
+          </div>
+          <button id="addBtn" onclick="addBookmark()" type="submit" class="btn btn-submit my-3 px-5">Submit</button>
+        </div>
+
+        <table class="table text-center mt-4">
+          <thead>
+            <tr>
+              <th scope="col">Index</th>
+              <th scope="col">Website Name</th>
+              <th scope="col">Visit</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+    </main>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/index.js"></script>
+  </body>
+</html>
